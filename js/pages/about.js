@@ -72,6 +72,7 @@
 
         '<section class="section"><div class="container">' +
         u.sectionHead({
+          icon: 'sparkle',
           eyebrow: 'WHAT WE CARE',
           title: '我们在意的事',
           desc: '长期、协作、把细节做完——这三件事，比一次建得多漂亮更重要。'
@@ -81,6 +82,7 @@
 
         '<section class="section"><div class="container">' +
         u.sectionHead({
+          icon: 'trophy',
           eyebrow: 'MILESTONES',
           title: '云杉寨大事记',
           sub: 'SINCE ' + u.esc(u.fmtMonth(site.established)),

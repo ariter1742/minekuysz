@@ -1,7 +1,10 @@
 /* =============================================================
  * 云杉寨 · 成员名单
  * -------------------------------------------------------------
- * 支持搜索、按身份筛选、卡片 / 列表两种视图。
+ * 支持模糊搜索（含昵称、身份、头衔）、按身份筛选、卡片 / 列表两种视图。
+ * 搜索框带联想下拉，键盘上下键可选、回车直接应用。
+ * 从首页 Banner 搜索跳过来时地址栏是 #/members?q=关键词，
+ * 这里会自动把关键词填进搜索框并筛好。
  * 成员数据来自 data/members.js，新增成员不需要改这个文件。
  * ============================================================= */
 
@@ -50,9 +53,12 @@
 
         '<div class="toolbar">' +
         '<div class="toolbar__group">' +
+        '<div class="search-wrap">' +
         '<label class="search">' + u.icon('search') +
-        '<input type="search" data-search placeholder="搜索昵称 / 身份 / 头衔" aria-label="搜索成员">' +
+        '<input type="search" data-search placeholder="搜索昵称 / 身份 / 头衔" aria-label="搜索成员" autocomplete="off">' +
         '</label>' +
+        '<div class="suggest-box" data-suggest role="listbox" aria-label="成员搜索建议"></div>' +
+        '</div>' +
         '<div class="filters" data-filters>' + filters + '</div>' +
         '</div>' +
         '<div class="view-toggle" role="group" aria-label="切换视图">' +
@@ -66,23 +72,43 @@
       );
     },
 
-    mounted: function (root) {
+    mounted: function (root, params) {
       var grid = root.querySelector('[data-member-grid]');
       var search = root.querySelector('[data-search]');
       var filters = root.querySelector('[data-filters]');
+      var suggestBox = root.querySelector('[data-suggest]');
       var toggles = root.querySelectorAll('[data-view]');
       if (!grid) return;
 
       var state = { keyword: '', role: '全部', view: 'card' };
 
-      function matches(member) {
-        if (state.role !== '全部' && member.role !== state.role) return false;
-        var keyword = state.keyword.trim().toLowerCase();
-        if (!keyword) return true;
-        var haystack = [member.name, member.role, member.title]
-          .join(' ')
-          .toLowerCase();
-        return haystack.indexOf(keyword) >= 0;
+      /* 从首页搜索跳过来：把关键词带进搜索框 */
+      if (params && params.q) {
+        state.keyword = params.q;
+        if (search) search.value = params.q;
+      }
+
+      /* 名字命中优先，其次头衔 / 身份 */
+      function scoreOf(member) {
+        var keyword = state.keyword.trim();
+        if (!keyword) return 0;
+        var byName = u.fuzzyScore(member.name, keyword);
+        if (byName >= 0) return byName + 1000;
+        return Math.max(u.fuzzyScore(member.title, keyword), u.fuzzyScore(member.role, keyword));
+      }
+
+      function matched() {
+        var keyword = state.keyword.trim();
+        return u.memberList()
+          .filter(function (member) {
+            if (state.role !== '全部' && member.role !== state.role) return false;
+            if (!keyword) return true;
+            return scoreOf(member) >= 0;
+          })
+          .sort(function (a, b) {
+            if (!keyword) return 0;
+            return scoreOf(b) - scoreOf(a);
+          });
       }
 
       function draw() {
@@ -103,7 +129,7 @@
           return;
         }
 
-        var list = all.filter(matches);
+        var list = matched();
         if (!list.length) {
           grid.innerHTML =
             '<div class="member-empty">' +
@@ -125,6 +151,20 @@
         search.addEventListener('input', function () {
           state.keyword = search.value;
           draw();
+        });
+      }
+
+      /* 联想下拉：只列成员，选中即填入关键词 */
+      if (search && suggestBox) {
+        u.attachSuggest({
+          input: search,
+          box: suggestBox,
+          limit: 8,
+          onPick: function (entry) {
+            state.keyword = entry.label || '';
+            if (search) search.value = state.keyword;
+            draw();
+          }
         });
       }
 

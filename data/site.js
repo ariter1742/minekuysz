@@ -27,16 +27,27 @@ CJY.site = {
   /* 成员人数上限。已加入人数由 data/members.js 自动统计，无需手改。 */
   capacity: 14,
 
-  version: 'v1.0.0',
+  /* 建筑收录目标。首页「建筑收录」进度条以此为分母，按已收录条目数自动计算。 */
+  goals: {
+    buildings: 12
+  },
 
-  /* ---------- 导航（左侧 logo 固定回到首页，这里只列右侧栏目） ---------- */
+  version: 'v2.0.0',
+
+  /* 首页顶部公告条。留空则自动按剩余名额生成一句；
+   * 想换成手写内容就填字符串，支持 HTML 里的普通文本（会被转义）。 */
+  notice: '',
+
+  /* ---------- 导航（左侧 logo 固定回到首页，这里只列右侧栏目） ----------
+   * icon 对应 js/core.js 里 ICONS 的名字：宽屏和手机菜单都会显示，
+   * 只是窄屏时自动隐藏。 */
   nav: [
-    { id: 'home', label: '首页' },
-    { id: 'members', label: '成员名单' },
-    { id: 'buildings', label: '建筑展示' },
-    { id: 'news', label: '活动公告' },
-    { id: 'join', label: '加入我们' },
-    { id: 'about', label: '关于云杉寨' }
+    { id: 'home', label: '首页', icon: 'home' },
+    { id: 'members', label: '成员名单', icon: 'users' },
+    { id: 'buildings', label: '建筑展示', icon: 'grid' },
+    { id: 'news', label: '活动公告', icon: 'calendar' },
+    { id: 'join', label: '加入我们', icon: 'mail' },
+    { id: 'about', label: '关于云杉寨', icon: 'tree' }
   ],
 
   /* ---------- 服务器资料（没有资源就先写“待补充”） ---------- */
@@ -123,6 +134,9 @@ CJY.site = {
     slogan: '云杉为屏，木石为城',
     desc: '云杉寨官方页面 · 记录驻地、成员与公共工程。',
     disclaimer: '本站为玩家组织自建的社区页面，与 Mojang Studios、Microsoft 无关联。',
-    copyright: '© 2026 云杉寨 · SPRUCE HOLLOW'
+    copyright: '© 2026 云杉寨 · SPRUCE HOLLOW',
+    /* ICP 备案号。填了才在页脚显示，并自动链接到工信部备案系统；
+     * 留空则不显示这一项。例如：'粤ICP备2026000000号'。 */
+    icp: ''
   }
 };

@@ -59,6 +59,7 @@
 
         '<section class="section"><div class="container">' +
         u.sectionHead({
+          icon: 'users',
           eyebrow: 'CONDITIONS',
           title: '加入条件',
           desc: '这些不是门槛，是让寨子能长期运转的约定。'
@@ -68,6 +69,7 @@
 
         '<section class="section section--tight"><div class="container">' +
         u.sectionHead({
+          icon: 'pen',
           eyebrow: 'HOW TO JOIN',
           title: '加入流程',
           desc: '四步走完；中间任何一步觉得不合适，都可以直接退出。'
