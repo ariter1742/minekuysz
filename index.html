@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>云杉寨 · 官方页面</title>
+  <meta name="description" content="云杉寨 —— 《我的世界》国际版第三方服务器上的玩家共建组织。记录驻地、成员与公共工程。云杉为屏，木石为城。">
+  <meta name="theme-color" content="#070f0b">
+  <meta name="author" content="云杉寨">
+  <meta property="og:title" content="云杉寨 · SPRUCE HOLLOW">
+  <meta property="og:description" content="《我的世界》国际版第三方服务器 · 玩家共建组织">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo.svg">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ 启动页：logo 居中，渐变色向四周扩散（约 4.3 秒） ============ -->
+  <div id="splash" class="splash" role="presentation" aria-label="云杉寨启动中">
+    <div class="splash-sky"></div>
+    <div class="splash-rays"></div>
+    <div class="splash-glow"></div>
+    <div class="splash-rings" aria-hidden="true"><span></span><span></span></div>
+
+    <div class="splash-inner">
+      <img class="splash-logo" src="assets/logo.svg" alt="云杉寨 标志" width="184" height="184">
+      <div class="splash-name">云杉寨</div>
+      <div class="splash-en">SPRUCE HOLLOW</div>
+      <div class="splash-progress" aria-hidden="true"><i></i></div>
+    </div>
+
+    <span class="splash-version" id="splash-version"></span>
+    <button type="button" class="splash-skip">跳 过</button>
+  </div>
+
+  <!-- ============ 顶部导航：左侧 logo + 云杉寨，点击回主页 ============ -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="主导航">
+        <a class="brand" id="brand-link" href="#/" aria-label="云杉寨 · 返回首页">
+          <img class="brand-logo" src="assets/logo.svg" alt="" width="38" height="38">
+          <span class="brand-text">
+            <span class="brand-name">云杉寨</span>
+            <span class="brand-en">SPRUCE HOLLOW</span>
+          </span>
+        </a>
+
+        <div class="nav-right">
+          <!-- 导航项由 js/layout.js 依据 data/site.js 的 nav 渲染 -->
+          <div class="nav-links" id="site-nav"></div>
+          <button class="nav-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="site-nav"></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ 页面内容（由 js/main.js 根据 # 路由渲染） ============ -->
+  <main id="main">
+    <div id="app"></div>
+  </main>
+
+  <!-- ============ 页脚（由 js/layout.js 渲染） ============ -->
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <noscript>
+    <p class="noscript-note">本页面需要启用 JavaScript 才能显示内容，请在浏览器设置中允许脚本后刷新。</p>
+  </noscript>
+
+  <!-- 数据层：日常维护主要改这里 -->
+  <script src="data/site.js"></script>
+  <script src="data/members.js"></script>
+  <script src="data/milestones.js"></script>
+  <script src="data/buildings.js"></script>
+  <script src="data/announcements.js"></script>
+
+  <!-- 核心脚本 -->
+  <script src="js/core.js"></script>
+  <script src="js/splash.js"></script>
+  <script src="js/layout.js"></script>
+
+  <!-- 各页面 -->
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/members.js"></script>
+  <script src="js/pages/buildings.js"></script>
+  <script src="js/pages/news.js"></script>
+  <script src="js/pages/join.js"></script>
+  <script src="js/pages/about.js"></script>
+
+  <!-- 路由与启动 -->
+  <script src="js/main.js"></script>
+</body>
+</html>
