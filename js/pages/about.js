@@ -62,10 +62,9 @@
         '<div class="info-card__title">' + u.icon('pin') + '服务器资料</div>' +
         '<dl class="info-list">' +
         infoRow('版本', server.edition) +
+        infoRow('客户端', server.version) +
         infoRow('服务器', server.name) +
         infoRow('模式', server.mode) +
-        infoRow('地址', server.address) +
-        infoRow('存档', server.sync) +
         '</dl>' +
         '</aside>' +
         '</div></div></section>' +

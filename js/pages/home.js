@@ -29,6 +29,7 @@
       '<div class="banner-inner">' +
       '<img class="banner-logo" src="assets/logo.png" alt="云杉寨 标志" width="118" height="118">' +
       '<div class="banner-text">' +
+      (site.hero.badge ? '<span class="banner-badge">' + u.esc(site.hero.badge) + '</span>' : '') +
       '<h1 class="banner-title">' + u.esc(site.name) + '</h1>' +
       '<p class="banner-sub">' + u.esc(site.slogan) + '</p>' +
       '<p class="banner-desc">' + u.esc(site.hero.desc) + '</p>' +

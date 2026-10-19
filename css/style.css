@@ -632,6 +632,30 @@ main {
   min-width: 0;
 }
 
+/* Banner 顶部的小徽标（内容来自 data/site.js 的 hero.badge） */
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.banner-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-300);
+  box-shadow: 0 0 10px var(--green-300);
+}
+
 .banner-title {
   font-size: clamp(28px, 4.2vw, 44px);
   font-weight: 700;

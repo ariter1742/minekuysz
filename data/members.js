@@ -4,9 +4,13 @@
  * 增加一名成员（三步）：
  *   1) 把头像图片放进 assets/avatars/ 目录。
  *      建议 128×128 的正方形图片（png / jpg 均可），
- *      文件名用英文或数字，例如 avatars/17.png，避免空格与特殊符号。
+ *      文件名用英文或数字，避免空格与特殊符号。
  *   2) 在下面的数组末尾追加一条对象，把 avatar 指向该文件。
  *   3) 保存并刷新页面。成员总数、剩余名额、首页成员墙会自动更新。
+ *
+ * ⚠ avatar 写的路径必须和磁盘上的文件名「逐字一致」，大小写也要一致：
+ *   Windows 本地不区分大小写，写错了照样能显示，但传到 Linux 服务器
+ *   （Gitee Pages / GitHub Pages 等）就会 404。
  *
  * 字段说明：
  *   id      编号（字符串即可），用于列表视图的角标，留空会自动生成
@@ -24,7 +28,7 @@ CJY.members = [
     name: 'tiedan_MC',
     role: '会长',
     title: '云杉寨寨主',
-    avatar: 'assets/avatars/tiedan_MC.png',
+    avatar: 'assets/avatars/tiedan-MC.png',
   },
   {
     id: '02',
@@ -52,7 +56,7 @@ CJY.members = [
     name: 'TheWindBlows2025',
     role: '精英',
     title: '寨军',
-    avatar: 'assets/avatars/TheWindBlows2025.png',
+    avatar: 'assets/avatars/thewindblows2025.png',
   },
   {
     id: '06',
@@ -73,7 +77,7 @@ CJY.members = [
     name: 'Elma520',
     role: '成员',
     title: '政治部',
-    avatar: 'assets/avatars/Elma520.png',
+    avatar: 'assets/avatars/elma520.png',
   },
   {
     id: '09',

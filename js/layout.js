@@ -79,6 +79,7 @@
       '<div class="footer-col"><h4>联络</h4>' +
       contactLine('QQ 群', site.links && site.links.qq) +
       contactLine('Discord', site.links && site.links.discord) +
+      contactLine('Bilibili', site.links && site.links.bilibili) +
       contactLine('站内地图', site.links && site.links.map) +
       '</div>' +
       '</div>' +
