@@ -62,7 +62,7 @@ CJY.members = [
     id: '06',
     name: 'Ariter',
     role: '精英',
-    title: '生电部',
+    title: '建设部主管兼技术部主管',
     avatar: 'assets/avatars/Ariter.png',
   },
   {
